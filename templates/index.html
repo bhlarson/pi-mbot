@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Embedded Classification Demo</title>
+  </head>
+  <body><script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+    <script>
+      // Establishing connection with the server hosted at domain:port
+      var socket = io.connect('http://localhost:5000/');
+
+      then = new Date().getTime();
+      function move_forward(){
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/forward', true);
+        xhr.send(null);
+      }
+
+
+      // Listening for event named `any event`
+      socket.on('sensors', function(msg) {
+            console.log(msg);
+      });
+    </script>
+
+
+    <img src="{{ url_for('video_feed') }}" width=100%>
+  </body>
+</html>
